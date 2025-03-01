@@ -1,7 +1,11 @@
+from Score import add_score
+
+
 def welcome(name):
     return f"Hello {name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play."
 
 def load_game():
+    """Loads and starts the selected game. Updates score if the player wins."""
     print("""Please choose a game to play:
 1. Memory Game - a sequence of numbers will appear for 1 second and you have to guess it back.
 2. Guess Game - guess a number and see if you chose like the computer.
@@ -12,8 +16,7 @@ def load_game():
             chosen_game = int(input("Enter game number (1-3): "))
             if 1 <= chosen_game <= 3:
                 break
-            else:
-                print("Invalid input! Please choose a number between 1 and 3.")
+            print("Invalid input! Please choose a number between 1 and 3.")
         except ValueError:
             print("Invalid input! Please enter a number.")
 
@@ -23,15 +26,18 @@ def load_game():
             difficulty = int(input("Enter difficulty level (1-5): "))
             if 1 <= difficulty <= 5:
                 break
-            else:
-                print("Invalid input! Please choose a number between 1 and 5.")
+            print("Invalid input! Please choose a number between 1 and 5.")
         except ValueError:
             print("Invalid input! Please enter a number.")
 
-    return chosen_game, difficulty
+    # Import and play the selected game
+    if chosen_game == 1:
+        from MemoryGame import play
+    elif chosen_game == 2:
+        from GuessGame import play
+    else:
+        from CurrencyRouletteGame import play
 
-
-
-
-
-
+    # If player wins, add score
+    if play(difficulty):
+        add_score(difficulty)

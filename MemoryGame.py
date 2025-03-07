@@ -26,7 +26,7 @@ def play(difficulty):
     sequence = generate_sequence(difficulty)
     print("\nMemorize this sequence:")
     print(sequence)
-    time.sleep(0.7)  #show the sequence for 0.7 seconds
+    time.sleep(0.7)  # Show the sequence for 0.7 seconds
     print("c", end="")
 
     user_sequence = get_list_from_user(difficulty)

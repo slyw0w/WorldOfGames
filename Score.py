@@ -1,11 +1,11 @@
 import os
 
 SCORES_FILE_NAME = "Scores.txt"
-BAD_RETURN_CODE = -1  # Defined here to avoid NameError
+BAD_RETURN_CODE = -1
 
 
 def add_score(difficulty):
-    POINTS_OF_WINNING = (difficulty * 3) + 5 # Adds points to the user's score based on game difficulty.
+    POINTS_OF_WINNING = (difficulty * 3) + 5 #Adds points to the user's score based on game difficulty.
 
     file_path = os.path.abspath(SCORES_FILE_NAME)
     print(f"Saving scores to: {file_path}") # Print the absolute path for debugging

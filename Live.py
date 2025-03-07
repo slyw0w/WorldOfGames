@@ -5,7 +5,6 @@ def welcome(name):
     return f"Hello {name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play."
 
 def load_game():
-    """Loads and starts the selected game. Updates score if the player wins."""
     print("""Please choose a game to play:
 1. Memory Game - a sequence of numbers will appear for 1 second and you have to guess it back.
 2. Guess Game - guess a number and see if you chose like the computer.

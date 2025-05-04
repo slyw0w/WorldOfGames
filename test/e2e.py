@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-import sys
 
 def test_scores_service(url):
     options = Options()
@@ -17,16 +16,14 @@ def test_scores_service(url):
         score = int(score_element.text)
         return 1 <= score <= 1000
     except Exception as e:
-        print(f"Test failed: {e}")
+        print(f"Test failed with exception: {e}")
         return False
     finally:
         driver.quit()
 
 def main():
-    if test_scores_service("http://localhost:8777"):
-        sys.exit(0)
-    else:
-        sys.exit(-1)
+    result = test_scores_service("http://localhost:8777")
+    exit(0 if result else -1)
 
 if __name__ == "__main__":
     main()

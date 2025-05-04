@@ -1,14 +1,14 @@
 FROM python:3.10-slim
 
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    wget unzip curl chromium-driver chromium
+    wget unzip curl chromium-driver chromium \
+    && pip install flask selenium
 
-WORKDIR /app
-
+# Copy source code
 COPY . /app
-
-RUN pip install -r requirements.txt
+WORKDIR /app
 
 EXPOSE 8777
 
-CMD ["python", "main.py"]
+CMD ["python", "MainScores.py"]

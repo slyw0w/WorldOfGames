@@ -2,13 +2,12 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'jjayw0w/world-of-games'
+        IMAGE_NAME = 'world-of-games'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Specify the 'main' branch explicitly
                 git branch: 'main', url: 'https://github.com/slyw0w/WorldOfGames.git'
             }
         }
@@ -21,8 +20,6 @@ pipeline {
 
         stage('Run') {
             steps {
-                // Remove container if it exists first to avoid conflicts
-                sh 'docker rm -f world-of-games || true'
                 sh 'docker run -d -p 8777:8777 -v $PWD/Scores.txt:/Scores.txt --name world-of-games $IMAGE_NAME'
                 sh 'sleep 5'
             }
@@ -36,9 +33,8 @@ pipeline {
 
         stage('Finalize') {
             steps {
-                sh 'docker stop world-of-games || true'
-                sh 'docker rm world-of-games || true'
-                sh 'docker push $IMAGE_NAME'
+                sh 'docker stop world-of-games'
+                sh 'docker rm world-of-games'
             }
         }
     }

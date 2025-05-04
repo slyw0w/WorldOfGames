@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'jjayw0w/WorldOfGames'
+        IMAGE_NAME = 'jjayw0w/world-of-games'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
         stage('Run') {
             steps {
                 sh 'docker run -d -p 8777:8777 -v $PWD/Scores.txt:/Scores.txt --name world-of-games $IMAGE_NAME'
-                sh 'sleep 5' // wait for service to boot
+                sh 'sleep 5'
             }
         }
 
